@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập kho sản phẩm mới</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body { height: 100%; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', Arial, sans-serif; background: #f4f8fd; margin: 0; }
+        nav {
+            width: 100vw;
+            background: #1976d2;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+            margin-bottom: 0;
+        }
+        nav div {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            height: 54px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container, .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(25,118,210,0.08);
+            padding: 32px 20px;
+        }
+        h1, h2, h3, h4, h5, h6, label, th {
+            color: #1976d2;
+        }
+        button, .quick-btn, .export-btn {
+            background: #1976d2 !important;
+            color: #fff !important;
+        }
+        .stat-card {
+            background: #1976d2 !important;
+            color: #fff !important;
+        }
+        .quick-actions, .recent-activity, .alerts-section {
+            background: #fff !important;
+        }
+        .success { color: #388e3c; }
+        .error { color: #d32f2f; }
+        .nk-container {
+            max-width: 1100px;
+            margin: 32px auto 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(80, 60, 180, 0.10);
+            padding: 32px 24px 24px 24px;
+        }
+        .nk-title {
+            color: #5f3dc4;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .nk-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 32px;
+            justify-content: center;
+            margin-bottom: 18px;
+            background: #f4f8fd;
+            padding: 18px 12px 12px 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(25,118,210,0.06);
+        }
+        .nk-form-group {
+            flex: 1 1 320px;
+            min-width: 260px;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .nk-form-group input, .nk-form-group textarea {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #b6c6e3;
+            font-size: 1rem;
+            background: #fafdff;
+        }
+        .nk-form-group textarea { min-height: 38px; }
+        .nk-btns {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            margin-top: 8px;
+        }
+        .nk-btn-main {
+            background: linear-gradient(90deg, #7c3aed 0%, #5f3dc4 100%);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 2px 8px rgba(80, 60, 180, 0.10);
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .nk-btn-main:hover { background: linear-gradient(90deg, #5f3dc4 0%, #7c3aed 100%); }
+        .nk-btn-reset {
+            background: #f4f8fd;
+            color: #5f3dc4;
+            border: 1px solid #b6c6e3;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+        .nk-btn-reset:hover { background: #e3e6f7; }
+        .nk-section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(80, 60, 180, 0.08);
+            padding: 24px 16px 18px 16px;
+            margin-top: 32px;
+        }
+        .nk-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(25,118,210,0.06);
+            font-size: 0.98rem;
+            overflow: hidden;
+        }
+        .nk-table th, .nk-table td {
+            border: none;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .nk-table th {
+            background: #e3e6f7;
+            color: #5f3dc4;
+            font-weight: 700;
+        }
+        .nk-table tr:nth-child(even) { background: #f7f8fc; }
+        .nk-table tr:hover { background: #f4f8fd; }
+        .nk-table img { border: 1px solid #b6c6e3; border-radius: 6px; }
+        .nk-table a { color: #5f3dc4; text-decoration: underline; }
+        .nk-table .qr-link { display: inline-block; }
+        .nk-table .qr-link img { width: 38px; height: 38px; object-fit: contain; }
+        .nk-table .qr-link:hover img { box-shadow: 0 0 0 2px #7c3aed; }
+        .nk-table thead { position: sticky; top: 0; z-index: 2; }
+        .nk-table th, .nk-table td { white-space: nowrap; }
+        .nk-table td { font-size: 0.97rem; }
+        .nk-table th { font-size: 1.01rem; }
+        .nk-table td:last-child, .nk-table th:last-child { text-align: center; }
+        .nk-table td {
+            border-bottom: 1px solid #e3e6f7;
+        }
+        .nk-table tr:last-child td { border-bottom: none; }
+        .nk-table th:first-child, .nk-table td:first-child { border-top-left-radius: 12px; }
+        .nk-table th:last-child, .nk-table td:last-child { border-top-right-radius: 12px; }
+        .nk-table th, .nk-table td { vertical-align: middle; }
+        .nk-table th { border-bottom: 2px solid #b6c6e3; }
+        .nk-table td { border-right: 1px solid #f4f8fd; }
+        .nk-table td:last-child { border-right: none; }
+        .nk-table th:last-child { border-right: none; }
+        .nk-table th:first-child { border-left: none; }
+        .nk-table td:first-child { border-left: none; }
+        .nk-table th, .nk-table td { min-width: 80px; }
+        .nk-table th.qr, .nk-table td.qr { min-width: 60px; }
+        .nk-table th.stt, .nk-table td.stt { min-width: 40px; }
+        .nk-table th.location, .nk-table td.location { min-width: 100px; }
+        .nk-table th.spec, .nk-table td.spec { min-width: 120px; }
+        .nk-table th.name, .nk-table td.name { min-width: 120px; }
+        .nk-table th.brand, .nk-table td.brand { min-width: 80px; }
+        .nk-table th.unit, .nk-table td.unit { min-width: 60px; }
+        .nk-table th.qty, .nk-table td.qty { min-width: 60px; }
+        .nk-table th.date, .nk-table td.date { min-width: 120px; }
+        .nk-table th input[type="text"] {
+            width: 100%;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid #b6c6e3;
+            font-size: 0.97rem;
+        }
+        .nk-table .qr-link { display: flex; align-items: center; justify-content: center; }
+        .nk-table .qr-link span { margin-left: 4px; font-size: 0.9rem; }
+        .nk-table .qr-link img { margin: 0; }
+        .nk-table .qr-link:hover img { border-color: #7c3aed; }
+        .nk-table .qr-link:active img { border-color: #5f3dc4; }
+        .nk-table .qr-link:focus img { outline: 2px solid #7c3aed; }
+        .nk-table .qr-link:focus { outline: none; }
+        .nk-table .qr-link:active { outline: none; }
+        .nk-table .qr-link:visited { color: #5f3dc4; }
+        .nk-table .qr-link:focus-visible { outline: 2px solid #7c3aed; }
+        .nk-table .qr-link:focus:not(:focus-visible) { outline: none; }
+        .nk-table .qr-link:active { outline: none; }
+        .nk-table .qr-link:visited { color: #5f3dc4; }
+        .nk-table .qr-link:focus-visible { outline: 2px solid #7c3aed; }
+        .nk-table .qr-link:focus:not(:focus-visible) { outline: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <a href="/" style="color:#fff;font-weight:700;font-size:1.18rem;text-decoration:none;display:flex;align-items:center;gap:6px;">📁 Trang chủ</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:18px;">
+                <a href="/nhap-kho" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Nhập kho</a>
+                <a href="/xuat-kho" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Xuất kho</a>
+                <a href="/danh-sach" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Danh sách vật tư</a>
+                <a href="/bao-cao" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Báo cáo</a>
+                <a href="/kiem-ke" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Kiểm kê kho</a>
+            </div>
+        </div>
+    </nav>
+    <div class="nk-container">
+        <div class="nk-title"><span>📦</span> Nhập kho sản phẩm mới</div>
+        <form id="data-form" class="nk-form">
+            <div class="nk-form-group">
+                <label>Group use (Nhóm sử dụng):</label>
+                <input type="text" id="group_use" name="group_use" required placeholder="Nhập nhóm sử dụng">
+            </div>
+            <div class="nk-form-group">
+                <label>Product code (Mã hàng):</label>
+                <input type="text" id="product_code" name="product_code" required placeholder="Nhập mã hàng">
+            </div>
+            <div class="nk-form-group">
+                <label>Classify (Phân loại BU):</label>
+                <input type="text" id="classify" name="classify" required placeholder="Nhập phân loại BU">
+            </div>
+            <div class="nk-form-group">
+                <label>Part Code:</label>
+                <input type="text" id="part_code" name="part_code" required placeholder="Nhập Part Code">
+            </div>
+            <div class="nk-form-group">
+                <label>Material name (Tên hàng hóa):</label>
+                <input type="text" id="material_name" name="material_name" required placeholder="Nhập tên hàng hóa">
+            </div>
+            <div class="nk-form-group">
+                <label>Brand (Nhà SX):</label>
+                <input type="text" id="brand" name="brand" required placeholder="Nhập nhà sản xuất">
+            </div>
+            <div class="nk-form-group">
+                <label>Unit (Đơn vị):</label>
+                <input type="text" id="unit" name="unit" required placeholder="Nhập đơn vị">
+            </div>
+            <div class="nk-form-group">
+                <label>Location (Vị trí):</label>
+                <input type="text" id="location" name="location" required placeholder="Nhập vị trí">
+            </div>
+            <div class="nk-form-group">
+                <label>Người nhập kho:</label>
+                <input type="text" id="imported_by" name="imported_by" required placeholder="Nhập tên người nhập kho">
+            </div>
+            <div class="nk-form-group" style="flex-basis:100%;max-width:100%;">
+                <label>Specification/Drawing (Thông số kỹ thuật/bản vẽ):</label>
+                <textarea id="specification" name="specification" required placeholder="Nhập thông số kỹ thuật..."></textarea>
+            </div>
+            <div class="nk-form-group">
+                <label>Số lượng:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required placeholder="Nhập số lượng">
+            </div>
+            <div class="nk-btns" style="flex-basis:100%;justify-content:flex-end;">
+                <button type="reset" class="nk-btn-reset">Làm mới</button>
+                <button type="submit" class="nk-btn-main"><span>📄</span> Tạo mã QR & Lưu</button>
+            </div>
+        </form>
+        <div id="result" style="text-align:center;font-weight:600;"></div>
+        <div id="qr-download" style="margin-top:16px;text-align:center;"></div>
+        <div id="qr-show" style="margin-top:16px;text-align:center;"></div>
+    </div>
+    <div class="nk-section">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:10px;">
+            <div class="nk-title" style="font-size:1.25rem;margin:0;gap:8px;"><span>📋</span> Lịch sử nhập kho</div>
+        </div>
+        <div style="overflow-x:auto;width:100%;">
+        <table class="nk-table">
+            <thead>
+                <tr>
+                    <th class="stt">STT</th>
+                    <th>Group use</th>
+                    <th>Product code</th>
+                    <th>Classify</th>
+                    <th>Part Code</th>
+                    <th class="name">Material name</th>
+                    <th class="spec">Specification</th>
+                    <th class="brand">Brand</th>
+                    <th class="unit">Unit</th>
+                    <th class="location">Location</th>
+                    <th>Người nhập kho</th>
+                    <th class="qty">Số lượng</th>
+                    <th class="date">Ngày nhập</th>
+                    <th class="qr">Mã QR</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for h in history %}
+                <tr>
+                    <td class="stt">{{ loop.index }}</td>
+                    <td>{{ h['group_name'] }}</td>
+                    <td>{{ h['product_code'] }}</td>
+                    <td>{{ h['classification'] }}</td>
+                    <td>{{ h['part_code'] }}</td>
+                    <td class="name">{{ h['material_name'] }}</td>
+                    <td class="spec">{{ h['specification'] }}</td>
+                    <td class="brand">{{ h['brand_name'] }}</td>
+                    <td class="unit">{{ h['unit'] }}</td>
+                    <td class="location">{{ h['location'] }}</td>
+                    <td>{{ h['imported_by'] }}</td>
+                    <td class="qty">{{ h['quantity'] }}</td>
+                    <td class="date">{{ h['created_at'] or h['transaction_date'] }}</td>
+                    <td class="qr">
+                        {% if h['part_code'] %}
+                        <a class="qr-link" href="/static/qr_codes/{{ h['part_code'] }}.png" target="_blank">
+                            <img src="/static/qr_codes/{{ h['part_code'] }}.png" alt="QR">
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <script>
+        document.getElementById('data-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const group_use = document.getElementById('group_use').value;
+            const product_code = document.getElementById('product_code').value;
+            const classify = document.getElementById('classify').value;
+            const part_code = document.getElementById('part_code').value;
+            const material_name = document.getElementById('material_name').value;
+            const specification = document.getElementById('specification').value;
+            const brand = document.getElementById('brand').value;
+            const unit = document.getElementById('unit').value;
+            const location = document.getElementById('location').value;
+            const imported_by = document.getElementById('imported_by').value;
+            const quantity = document.getElementById('quantity').value;
+            if (!group_use || !product_code || !classify || !part_code || !material_name || !specification || !brand || !unit || !location || !quantity || !imported_by) {
+                document.getElementById('result').innerText = 'Vui lòng nhập đầy đủ thông tin!';
+                document.getElementById('result').style.color = '#d32f2f';
+                return;
+            }
+            const res = await fetch('/create-product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ group_use, product_code, classify, part_code, material_name, specification, brand, unit, location, quantity, imported_by })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                document.getElementById('result').innerText = 'Đã lưu và tạo mã QR thành công!';
+                document.getElementById('result').style.color = '#388e3c';
+                document.getElementById('data-form').reset();
+                document.getElementById('qr-download').innerHTML = `<a href="${data.qr_url}" download="qr_code.png" style="color:#5f3dc4;font-weight:600;">⬇ Tải mã QR sản phẩm</a>`;
+                document.getElementById('qr-show').innerHTML = `<img src="${data.qr_url}" alt="QR code" style="margin-top:10px;max-width:180px;border:1px solid #b6c6e3;border-radius:8px;">`;
+            } else {
+                document.getElementById('result').innerText = 'Lỗi: ' + data.message;
+                document.getElementById('result').style.color = '#d32f2f';
+                document.getElementById('qr-show').innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>

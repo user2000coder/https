@@ -1,0 +1,16 @@
+timestamp,qr_code,ma_code,classify,part_code,material_name,specification,brand,providers,unit,mh_loai,cong_dung,quantity
+2025-05-31 10:00:00,02f7c9ef-0e5c-4a83-91a6-66ec76c27c20,ABC123,Điện trở,PRT-001,Điện trở 10k,10kΩ 1%,Sumida,Nhà cung cấp A,Cái,Điện tử,Điều chỉnh dòng,100
+2025-05-31 10:15:00,1a2b3c4d-5e6f-7890-abcd-ef1234567890,DEF456,Tụ điện,CAP-002,Tụ ceramic 100nF,100nF 50V,Murata,Nhà cung cấp B,Cái,Điện tử,Lọc nhiễu,230
+2025-05-31 10:30:00,9f8e7d6c-5b4a-3928-1716-0fedcba98765,GHI789,IC,IC-003,Vi điều khiển,ATmega328P,Atmel,Nhà cung cấp C,Cái,Điện tử,Xử lý tín hiệu,50
+2025-05-31 10:45:00,5a6b7c8d-9e0f-1a2b-3c4d-5e6f7890abcd,JKL012,LED,LED-004,LED đỏ 5mm,5mm Red 20mA,Kingbright,Nhà cung cấp D,Cái,Quang điện,Hiển thị trạng thái,500
+2025-05-31 11:00:00,fedcba98-7654-3210-fedc-ba9876543210,MNO345,Cuộn cảm,IND-005,Cuộn cảm 10µH,10µH 1A,TDK,Nhà cung cấp E,Cái,Điện tử,Lọc tần số,75
+2025-05-31 11:15:00,abcd1234-ef56-7890-abcd-1234567890ef,PQR678,Transistor,TRA-006,Transistor NPN,2N2222A,Fairchild,Nhà cung cấp F,Cái,Điện tử,Khuếch đại,200
+2025-05-31 11:30:00,1122334455667788-99aa-bbcc-ddee-ff0011223344,STU901,Diode,DIO-007,Diode chỉnh lưu,1N4007,Vishay,Nhà cung cấp G,Cái,Điện tử,Chỉnh lưu,300
+2025-05-31 11:45:00,aa1bb2cc-3dd4-ee5f-f667-788990011223,VWX234,Ổ cắm,CON-008,Ổ cắm USB,USB Type-A,Amphenol,Nhà cung cấp H,Cái,Kết nối,Truyền dữ liệu,120
+2025-05-31 12:00:00,99887766-5544-3322-1100-ffeeddccbbaa,YZA567,Pin,BAT-009,Pin Lithium,CR2032 3V,Panasonic,Nhà cung cấp I,Cái,Năng lượng,Cung cấp điện,80
+2025-05-31 12:15:00,55aa44bb-33cc-22dd-11ee-00ff99887766,BCD890,Cảm biến,SEN-010,Cảm biến nhiệt độ,DS18B20,Maxim,Nhà cung cấp J,Cái,Cảm biến,Đo nhiệt độ,60
+2025-05-31 12:30:00,123abc456def-789g-hi01-jk23-lm45no67pq89,EFG123,Relay,REL-011,Relay 5V,5V 10A SPDT,Omron,Nhà cung cấp K,Cái,Điều khiển,Chuyển mạch,40
+2025-05-31 12:45:00,fedcba987654-3210-fedc-ba98-76543210fedc,HIJ456,Biến trở,POT-012,Biến trở xoay,10kΩ Linear,Alps,Nhà cung cấp L,Cái,Điện tử,Điều chỉnh,90
+2025-05-31 13:00:00,aabbccdd-eeff-0011-2233-445566778899,KLM789,Fuse,FUS-013,Cầu chì,250V 1A,Littelfuse,Nhà cung cấp M,Cái,Bảo vệ,Ngắt quá tải,150
+2025-05-31 13:15:00,11223344-5566-7788-99aa-bbccddeeff00,NOP012,Màn hình,LCD-014,LCD 16x2,16x2 Character,Hitachi,Nhà cung cấp N,Cái,Hiển thị,Hiển thị thông tin,1
+2025-05-31 13:30:00,99aabbcc-ddee-ff00-1122-334455667788,QRS345,Động cơ,MOT-015,Servo motor,SG90 9g,Tower Pro,Nhà cung cấp O,Cái,Cơ khí,Điều khiển vị trí,1

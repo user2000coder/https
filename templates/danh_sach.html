@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sản phẩm đã nhập kho</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body { height: 100%; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', Arial, sans-serif; background: #f4f8fd; margin: 0; }
+        nav {
+            width: 100vw;
+            background: #1976d2;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+            margin-bottom: 0;
+        }
+        nav div {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            height: 54px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container, .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(25,118,210,0.08);
+            padding: 32px 20px;
+        }
+        h1, h2, h3, h4, h5, h6, label, th {
+            color: #1976d2;
+        }
+        button, .quick-btn, .export-btn {
+            background: #1976d2 !important;
+            color: #fff !important;
+        }
+        .stat-card {
+            background: #1976d2 !important;
+            color: #fff !important;
+        }
+        .quick-actions, .recent-activity, .alerts-section {
+            background: #fff !important;
+        }
+        .success { color: #388e3c; }
+        .error { color: #d32f2f; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+            background: #fff;
+        }
+        th, td {
+            border: 1px solid #b6c6e3;
+            padding: 10px 14px;
+            text-align: center;
+        }
+        th {
+            background: #e3f0ff;
+            color: #1976d2;
+            font-size: 1.08rem;
+        }
+        tr:nth-child(even) { background: #f4f8fd; }
+        a.qr-link { color: #1976d2; text-decoration: underline; }
+        .nav { display: flex; justify-content: space-between; margin-bottom: 18px; padding: 0 18px; max-width: 1100px; width: 96vw; }
+        .nav a { color: #1976d2; font-weight: 700; text-decoration: none; font-size: 1.1rem; }
+        @media (max-width: 1200px) { .content-box, .nav { max-width: 99vw; width: 99vw; } }
+        @media (max-width: 900px) { .content-box { padding: 12px 2px; } table { font-size: 0.97rem; } }
+        @media (max-width: 600px) {
+            .container { padding: 0; }
+            .content-box { padding: 4px 0; }
+            table { font-size: 0.92rem; }
+            .nav { padding: 0 4px; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <a href="/" style="color:#fff;font-weight:700;font-size:1.18rem;text-decoration:none;display:flex;align-items:center;gap:6px;">📁 Trang chủ</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;">
+            <a href="/nhap-kho" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Nhập kho</a>
+            <a href="/xuat-kho" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Xuất kho</a>
+            <a href="/danh-sach" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Danh sách vật tư</a>
+            <a href="/bao-cao" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Báo cáo</a>
+            <a href="/kiem-ke" style="color:#fff;text-decoration:none;font-weight:500;font-size:1.05rem;">Kiểm kê kho</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="content-box">
+        <h1>Danh sách sản phẩm đã nhập kho</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã QR</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Vị trí</th>
+                    <th>Số lượng</th>
+                    <th>QR Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in products %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ p.qr_code }}</td>
+                    <td>{{ p.product_name }}</td>
+                    <td>{{ p.location }}</td>
+                    <td>{{ p.quantity }}</td>
+                    <td>
+                        <a class="qr-link" href="/static/qr_codes/{{ p.qr_code }}.png" target="_blank">Xem QR</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h1 style="margin-top:40px;">Danh sách xuất kho</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Thời gian</th>
+                    <th>Mã QR</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Vị trí</th>
+                    <th>Số lượng xuất</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in xuat_kho %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ x.timestamp }}</td>
+                    <td>{{ x.qr_code }}</td>
+                    <td>{{ x.product_name }}</td>
+                    <td>{{ x.location }}</td>
+                    <td>{{ x.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
