@@ -340,4 +340,11 @@ def download_db():
     return send_file(db_path, as_attachment=True, download_name='warehouse.db')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Đường dẫn đến file chứng chỉ và khóa riêng (tạo bằng openssl nếu chưa có)
+    cert_path = 'cert.pem'
+    key_path = 'key.pem'
+    if not (os.path.exists(cert_path) and os.path.exists(key_path)):
+        print('Vui lòng tạo file cert.pem và key.pem để chạy HTTPS!')
+        print('Tạo bằng lệnh: openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes')
+        exit(1)
+    app.run(host='0.0.0.0', port=5000, debug=True, ssl_context=(cert_path, key_path))
